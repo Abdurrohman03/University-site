@@ -1,0 +1,43 @@
+{% extends 'account/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Profile Update</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email Address</label>
+                                <input name="email" value="{{ profile.user.email }}" type="email" class="form-control" id="exampleInputEmail1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputFirstName1" class="form-label">First Name</label>
+                                <input type="text" name="first_name" value="{{ profile.user.first_name }}" class="form-control" id="exampleInputFirstName1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputLastName1" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="exampleInputLastName1" name="last_name" value="{{ profile.user.last_name }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputImage1" class="form-label">Image</label>
+                                <input type="file" class="form-control" name="image" src="{% if profile.image %}{{ profile.image.url }}{% endif %}" id="exampleInputImage1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputBio" class="form-label">Bio</label>
+                                <textarea class="form-control" name="bio" id="exampleInputBio">{{ profile.bio|safe }}</textarea>
+                            </div>
+                            <div class="mb-3" style="margin-top: 15px">
+                            <button type="submit" class="mt-4 btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+{% endblock %}
